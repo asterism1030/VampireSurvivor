@@ -8,9 +8,16 @@ public class Global_Data : MonoBehaviour
 
     private static Data_GameOption _option = new Data_GameOption();
 
+    public static int _prevStageNum = 0;
     public static int _stageNum = 1;
 
     private static Stage _stage = null;
+
+    public static int _mobLimitCouns = 50;
+
+    public static eCharacterKind _selectedCharacter = eCharacterKind.A;
+
+    public static Character _character = null;
 
     #region 맵 관련 변수
     public static int _textureSize;
@@ -102,7 +109,6 @@ public class Global_Data : MonoBehaviour
     }
 
     #endregion
-
 
     #endregion
 

@@ -89,9 +89,10 @@ public enum eEventType
 
     #endregion
     #endregion
-    StartGame,
     EndGame,
     StageReady,
     StageSetupCompleted,
-    AddStageParts,
+    SpawnMobChange,
+    CharacterDead,
+    
 }

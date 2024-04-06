@@ -265,13 +265,13 @@ public class DataManager : Base_Manager
                 parsingData.mobChanges[j] = int.Parse(tempStringData[j]);
             }
 
-            parsingData.branchDelay = int.Parse(dataSegment[15]);
+            parsingData.branchDelay = float.Parse(dataSegment[15]);
 
             tempStringData = dataSegment[16].Split(",");
-            parsingData.startEndSpawnDelay = new int[tempStringData.Length];
+            parsingData.startEndSpawnDelay = new float[tempStringData.Length];
             for (int j = 0; j < tempStringData.Length; j++)
             {
-                parsingData.startEndSpawnDelay[j] = int.Parse(tempStringData[j]);
+                parsingData.startEndSpawnDelay[j] = float.Parse(tempStringData[j]);
             }
 
             parsingData.spawnDelayInterval = float.Parse(dataSegment[17]);
@@ -324,6 +324,9 @@ public class DataManager : Base_Manager
             parsingData.damage = float.Parse(dataSegment[2]);
             parsingData.speed = float.Parse(dataSegment[3]);
             parsingData.delay = float.Parse(dataSegment[4]);
+            parsingData.collectType = (eCollectionType)Enum.Parse(typeof(eCollectionType), dataSegment[5]);
+            parsingData.duration = float.Parse(dataSegment[6]);
+            parsingData.throwCount = float.Parse(dataSegment[7]);
 
             Global_Data.weaponTable.Add(parsingData.ID, parsingData);
         }
@@ -333,7 +336,31 @@ public class DataManager : Base_Manager
     {
         Global_Data.characterTable.Clear();
 
-        // TODO:: 후후.. 동진님이 해주시겠지?
+        for (int i = 0; i < m_dataArray.Length; i++)
+        {
+            Data_Character parsingData = new Data_Character();
+            string[] dataSegment = m_dataArray[i].Split("\t");
+
+            parsingData.ID = int.Parse(dataSegment[0]);
+            parsingData.name = dataSegment[1];
+            parsingData.weapon = (eWeaponType)int.Parse(dataSegment[2]);
+            parsingData.hp = float.Parse(dataSegment[3]);
+            parsingData.damage = float.Parse(dataSegment[4]);
+            parsingData.moveSpeed = float.Parse(dataSegment[5]);
+            parsingData.armor = float.Parse(dataSegment[6]);
+            parsingData.recoverHp = float.Parse(dataSegment[7]);
+            parsingData.lucky = float.Parse(dataSegment[8]);
+            parsingData.throwCount = float.Parse(dataSegment[9]);
+            parsingData.throwSpeed = float.Parse(dataSegment[10]);
+            parsingData.attackRange = float.Parse(dataSegment[11]);
+            parsingData.attackDelay = float.Parse(dataSegment[12]);
+            parsingData.attackDuration = float.Parse(dataSegment[13]);
+            parsingData.bonusExp = float.Parse(dataSegment[14]);
+            parsingData.bonusGold = float.Parse(dataSegment[15]);
+            parsingData.avoidRate = float.Parse(dataSegment[16]);
+
+            Global_Data.characterTable.Add(parsingData.ID, parsingData);
+        }
     }
 
     private void Convert_CommonTextTable(string[] m_dataArray)
